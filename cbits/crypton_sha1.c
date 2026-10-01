@@ -242,7 +242,7 @@ static inline void sha1_do_chunk(struct sha1_ctx *ctx, const uint8_t *buf)
 		sha1_use_x86 =
 		    (crypton_x86_simd_features() & CRYPTON_X86_SHA_NI) != 0;
 	if (sha1_use_x86) {
-		crypton_sha1_x86_do_chunk(ctx->h, buf);
+		crypton_sha1_x86_do_chunk(ctx->h, (const uint32_t *) buf);
 		return;
 	}
 #endif
